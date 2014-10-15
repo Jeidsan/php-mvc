@@ -2,11 +2,11 @@
     <h2>You are in the View: application/views/song/index.php (everything in this box comes from that file)</h2>
     <!-- add song form -->
     <div>
-        <h3>Add a song</h3>
+        <h3>Adicionar música</h3>
         <form action="<?php echo URL; ?>songs/addsong" method="POST">
-            <label>Artist</label>
+            <label>Artísta</label>
             <input type="text" name="artist" value="" required />
-            <label>Track</label>
+            <label>Música</label>
             <input type="text" name="track" value="" required />
             <label>Link</label>
             <input type="text" name="link" value="" />
@@ -19,16 +19,16 @@
         <div>
             <?php echo $amount_of_songs; ?>
         </div>
-        <h3>List of songs (data from first model)</h3>
+        <h3>Lista de Canções (data from first model)</h3>
         <table>
             <thead style="background-color: #ddd; font-weight: bold;">
             <tr>
                 <td>Id</td>
-                <td>Artist</td>
-                <td>Track</td>
+                <td>Artista</td>
+                <td>Canção</td>
                 <td>Link</td>
-                <td>DELETE</td>
-                <td>EDIT</td>
+                <td>DELETAR</td>
+                <td>EDITAR</td>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +42,7 @@
                             <a href="<?php echo $song->link; ?>"><?php echo $song->link; ?></a>
                         <?php } ?>
                     </td>
-                    <td><a href="<?php echo URL . 'songs/deletesong/' . $song->id; ?>">x</a></td>
+                    <td><a href="<?php echo URL . 'songs/deletesong/' . $song->id; ?>">X</a></td>
                     <td><a href="<?php echo URL . 'songs/editsong/' . $song->id; ?>">E</a></td>
                 </tr>
             <?php } ?>
