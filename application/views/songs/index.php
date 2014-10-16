@@ -10,7 +10,7 @@
             <input type="text" name="track" value="" required />
             <label>Link</label>
             <input type="text" name="link" value="" />
-            <input type="submit" name="submit_add_song" value="Submit" />
+            <input type="submit" name="submit_add_song" value="Update" />
         </form>
     </div>
     <!-- main content output -->

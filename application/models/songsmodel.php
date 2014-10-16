@@ -68,7 +68,7 @@ class SongsModel
     }
 
     /**
-     * Delete a song in the database
+     * Apaga uma canção da base de dados
      * Please note: this is just an example! In a real application you would not simply let everybody
      * add/update/delete stuff!
      * @param int $song_id Id of song
@@ -78,5 +78,24 @@ class SongsModel
         $sql = "DELETE FROM song WHERE id = :song_id";
         $query = $this->db->prepare($sql);
         $query->execute(array(':song_id' => $song_id));
+    }
+    
+    /**
+     * Atualiza uma canção à base de dados
+     * @param string $id id
+     * @param string $artist Artista
+     * @param string $track Canção
+     * @param string $link Link     
+     */
+    public function updateSong($song_id, $artist, $track, $link) {
+        
+        // clean the input from javascript code for example
+        $artist = strip_tags($artist);
+        $track = strip_tags($track);
+        $link = strip_tags($link);
+        
+        $sql = "UPDATE song SET artist = :artist, track = :track, link = :link WHERE id = :song_id";
+        $query =  $this->db->prepare($sql);
+        $query->execute(array(':song_id'=>$song_id, ':artist' => $artist, ':track' => $track, ':link' => $link));
     }
 }

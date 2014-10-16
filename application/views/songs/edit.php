@@ -1,20 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Edição de uma canção</title>
-    </head>
-    <body>
-        <form>
-            <input type="text" 
-                   name="artist" 
-                   value="<?= $song[0]->artist ?>" />
-        </form>
-        <?php
-        echo "<p>ID: {$song[0]->id}</p>";
-        echo "<p>Artista: {$song[0]->artist}</p>";
-        echo "<p>Faixa: {$song[0]->track}</p>";
-        echo "<p>Link: {$song[0]->link}</p>";        
-        ?>
-    </body>
-</html>
+<div id="container">
+        <!-- edit song form -->
+        <div>
+            <h3>Editar Canção</h3>
+            <form action="<?php echo URL; ?>songs/updatesong" method="POST">
+                <input type="hidden" name="song_id" value="<?=$song->id?>" />
+                <label>Artísta</label>
+                <input type="text" name="artist" value="<?=$song->artist?>" required />
+                <label>Música</label>
+                <input type="text" name="track" value="<?=$song->track?>" required />
+                <label>Link</label>
+                <input type="text" name="link" value="<?=$song->link?>" required />
+                <input type="submit" name="submit_update_song" value="Submit" />
+            </form>
+        </div>        
+
+        <!--?php
+        echo "<p>ID: {$song->id}</p>";
+        echo "<p>Artista: {$song->artist}</p>";
+        echo "<p>Faixa: {$song->track}</p>";
+        echo "<p>Link: {$song->link}</p>";
+        ?-->
+        </div>

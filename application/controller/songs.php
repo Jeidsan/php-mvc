@@ -9,14 +9,13 @@
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Songs extends Controller
-{
+class Songs extends Controller {
+
     /**
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/songs/index
      */
-    public function index()
-    {
+    public function index() {
         // simple message to show where you are
         echo 'Message from Controller: You are in the Controller: Songs, using the method index().';
 
@@ -44,14 +43,13 @@ class Songs extends Controller
      * the user back to songs/index via the last line: header(...)
      * This is an example of how to handle a POST request.
      */
-    public function addSong()
-    {
+    public function addSong() {
 
         // if we have POST data to create a new song entry
         if (isset($_POST["submit_add_song"])) {
             // load model, perform an action on the model
             $songs_model = $this->loadModel('SongsModel');
-            $songs_model->addSong($_POST["artist"], $_POST["track"],  $_POST["link"]);
+            $songs_model->addSong($_POST["artist"], $_POST["track"], $_POST["link"]);
         }
 
         // where to go after song has been added
@@ -67,8 +65,7 @@ class Songs extends Controller
      * This is an example of how to handle a GET request.
      * @param int $song_id Id of the to-delete song
      */
-    public function deleteSong($song_id)
-    {
+    public function deleteSong($song_id) {
 
         // if we have an id of a song that should be deleted
         if (isset($song_id)) {
@@ -80,9 +77,8 @@ class Songs extends Controller
         // where to go after song has been deleted
         header('location: ' . URL . 'songs/index');
     }
-    
-    public function editSong($song_id)
-    {
+
+    public function editSong($song_id) {
 
         // if we have an id of a song that should be deleted
         if (isset($song_id)) {
@@ -93,26 +89,36 @@ class Songs extends Controller
             $song = $songs_model->getSong($song_id);
             /**
              * Só pra debugar
-             
-            echo "<pre>";
-            var_dump($song);
-            echo "</pre>";
-            
-            echo "<p>ID: {$song[0]->id}</p>";
-            echo "<p>Artista: {$song[0]->artist}</p>";
-            echo "<p>Faixa: {$song[0]->track}</p>";
-            echo "<p>Link: {$song[0]->link}</p>";
-            die();
+
+              echo "<pre>";
+              var_dump($song);
+              echo "</pre>";
+
+              echo "<p>ID: {$song[0]->id}</p>";
+              echo "<p>Artista: {$song[0]->artist}</p>";
+              echo "<p>Faixa: {$song[0]->track}</p>";
+              echo "<p>Link: {$song[0]->link}</p>";
+              die();
              * 
              */
-            
         }
         // load views. 
-        //require 'application/views/_templates/header.php';
+        require 'application/views/_templates/header.php';
         require 'application/views/songs/edit.php';
-        //require 'application/views/_templates/footer.php';
-        
+        require 'application/views/_templates/footer.php';
     }
-    
-    
+
+    public function updateSong() {
+
+        // if we have POST data to create a new song entry
+        if (isset($_POST["submit_update_song"])) {
+            // load model, perform an action on the model
+            $songs_model = $this->loadModel('SongsModel');
+            $songs_model->addSong($_POST["song_id"], $_POST["artist"], $_POST["track"], $_POST["link"]);
+        }
+
+        // where to go after song has been added
+        header('location: ' . URL . 'songs/index');
+    }
+
 }
